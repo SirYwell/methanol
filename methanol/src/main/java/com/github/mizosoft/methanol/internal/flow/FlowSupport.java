@@ -22,6 +22,8 @@
 
 package com.github.mizosoft.methanol.internal.flow;
 
+import org.checkerframework.checker.handles.qual.Accessor;
+
 import static java.util.Objects.requireNonNull;
 
 import java.lang.System.Logger;
@@ -132,7 +134,7 @@ public class FlowSupport {
   }
 
   /** Subtracts given count from demand. Caller must ensure the result won't be negative. */
-  public static long subtractAndGetDemand(Object owner, VarHandle demand, long n) {
+  public static long subtractAndGetDemand(Object owner, @Accessor("~(Object;long)") VarHandle demand, long n) {
     return (long) demand.getAndAdd(owner, -n) - n;
   }
 

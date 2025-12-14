@@ -46,6 +46,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.checkerframework.checker.handles.qual.Accessor;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /** Publisher for the response body as read from a cached entry's {@link Viewer}. */
@@ -147,7 +149,7 @@ public final class CacheReadingPublisher implements Publisher<List<ByteBuffer>> 
      */
     private static final int PREFETCH = 2 * MAX_BULK_READ_SIZE;
 
-    private static final VarHandle STATE;
+    private static final @Accessor("CacheReadingSubscription;State") VarHandle STATE;
 
     static {
       try {

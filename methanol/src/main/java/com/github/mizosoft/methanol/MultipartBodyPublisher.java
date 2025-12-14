@@ -58,6 +58,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
+
+import org.checkerframework.checker.handles.qual.Accessor;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -445,7 +447,7 @@ public final class MultipartBodyPublisher implements MimeBodyPublisher {
 
   private static final class MultipartSubscription
       extends AbstractPollableSubscription<ByteBuffer> {
-    private static final VarHandle PART_SUBSCRIBER;
+    private static final @Accessor("(MultipartSubscription;Subscriber)") VarHandle PART_SUBSCRIBER;
 
     static {
       try {

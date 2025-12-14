@@ -43,6 +43,8 @@ import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
+
+import org.checkerframework.checker.handles.qual.Accessor;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -191,8 +193,8 @@ public final class CacheWritingPublisher implements Publisher<List<ByteBuffer>> 
   }
 
   static final class CacheWritingSubscription implements Subscription {
-    private static final VarHandle DOWNSTREAM;
-    private static final VarHandle STATE;
+    private static final @Accessor("CacheWritingSubscription;Subscriber") VarHandle DOWNSTREAM;
+    private static final @Accessor("CacheWritingSubscription;WritingState") VarHandle STATE;
 
     static {
       try {

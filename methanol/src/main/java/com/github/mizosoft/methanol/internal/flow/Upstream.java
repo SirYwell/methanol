@@ -22,6 +22,8 @@
 
 package com.github.mizosoft.methanol.internal.flow;
 
+import org.checkerframework.checker.handles.qual.Accessor;
+
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
 import java.util.concurrent.Flow.Subscription;
@@ -46,7 +48,7 @@ public final class Upstream {
         public void cancel() {}
       };
 
-  private static final VarHandle SUBSCRIPTION;
+  private static final @Accessor("(Upstream;Subscription)") VarHandle SUBSCRIPTION;
 
   static {
     try {

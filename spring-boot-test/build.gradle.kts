@@ -21,24 +21,25 @@ dependencies {
   annotationProcessor(libs.autoservice.annprocess)
 }
 
-// Make sure we only run this in Java 17+ setups.
+// Make sure we only run this in Java targetRelease+ setups.
+val targetRelease = 25
 
 tasks.withType<JavaCompile> {
   onlyIf {
-    java.toolchain.languageVersion.get().asInt() >= 17
+    java.toolchain.languageVersion.get().asInt() >= targetRelease
   }
-  options.release = 17 // Override to look for the correct dependencies.
+  options.release = targetRelease // Override to look for the correct dependencies.
 }
 
 tasks.withType<Test> {
   onlyIf {
-    java.toolchain.languageVersion.get().asInt() >= 17
+    java.toolchain.languageVersion.get().asInt() >= targetRelease
   }
 }
 
 tasks.bootJar {
   onlyIf {
-    java.toolchain.languageVersion.get().asInt() >= 17
+    java.toolchain.languageVersion.get().asInt() >= targetRelease
   }
 }
 

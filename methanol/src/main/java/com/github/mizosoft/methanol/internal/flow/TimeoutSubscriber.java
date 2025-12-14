@@ -28,6 +28,8 @@ import static com.github.mizosoft.methanol.internal.flow.FlowSupport.subtractAnd
 import static java.util.Objects.requireNonNull;
 
 import com.github.mizosoft.methanol.internal.concurrent.Delayer;
+import org.checkerframework.checker.handles.qual.Accessor;
+
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
 import java.time.Duration;
@@ -46,7 +48,7 @@ public abstract class TimeoutSubscriber<T, S extends Subscriber<? super T>>
   private static final Future<Void> COMPLETED_FUTURE = CompletableFuture.completedFuture(null);
 
   private static final VarHandle DEMAND;
-  private static final VarHandle TIMEOUT_TASK;
+  private static final @Accessor("(TimeoutSubscriber;TimeoutTask)") VarHandle TIMEOUT_TASK;
 
   static {
     var lookup = MethodHandles.lookup();

@@ -21,6 +21,7 @@ allprojects {
 
   repositories {
     mavenCentral()
+    mavenLocal()
   }
 }
 

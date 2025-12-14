@@ -15,7 +15,7 @@ tasks.withType<JavaCompile> {
     // Suppress warnings when exporting to modules unresolvable on separate compilation.
     compilerArgs.add("-Xlint:-module")
 
-    release = 11
+    release = 25
   }
 }
 

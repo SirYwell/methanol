@@ -33,12 +33,25 @@ val tckTestCompileOnly: Configuration by configurations.getting {
   extendsFrom(configurations.compileOnly.get())
 }
 
+checkerFramework {
+  checkers = listOf(
+    "org.checkerframework.checker.handles.HandleChecker",
+  )
+}
+
 dependencies {
   tckTestCompileOnly(libs.checkerframework.qual)
   tckTestImplementation(project(":methanol-testing"))
   tckTestImplementation(libs.testng)
   tckTestImplementation(libs.reactivestreams.tck.flow)
   tckTestImplementation(libs.mockwebserver)
+
+  compileOnly("io.github.eisop:checker-qual:3.49.3-eisop1")
+  testCompileOnly("io.github.eisop:checker-qual:3.49.3-eisop1")
+  checkerFramework("io.github.eisop:checker-qual:3.49.3-eisop1")
+  checkerFramework("io.github.eisop:checker:3.49.3-eisop1")
+  checkerFramework("de.sirywell:handles-checker:0.1-SNAPSHOT")
+  compileOnly("de.sirywell:handles-checker:0.1-SNAPSHOT")
 }
 
 tasks.named<JavaCompile>("compileTckTestJava") {

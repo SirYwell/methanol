@@ -34,6 +34,7 @@ module methanol {
   requires static org.checkerframework.checker.qual;
   requires static com.google.errorprone.annotations;
   requires jdk.httpserver;
+  requires handles.checker;
 
   exports com.github.mizosoft.methanol;
   exports com.github.mizosoft.methanol.decoder;

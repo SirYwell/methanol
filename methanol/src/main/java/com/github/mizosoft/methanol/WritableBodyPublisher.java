@@ -53,6 +53,8 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.BooleanSupplier;
+
+import org.checkerframework.checker.handles.qual.Accessor;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -72,7 +74,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * known length to this publisher.
  */
 public final class WritableBodyPublisher implements BodyPublisher, Flushable, AutoCloseable {
-  private static final VarHandle STATE;
+  private static final @Accessor("(WritableBodyPublisher;State)") VarHandle STATE;
 
   static {
     try {

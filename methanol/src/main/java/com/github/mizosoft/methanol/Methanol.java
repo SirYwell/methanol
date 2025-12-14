@@ -80,6 +80,8 @@ import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLParameters;
+
+import org.checkerframework.checker.handles.qual.Signature;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -112,11 +114,11 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 public class Methanol extends HttpClient {
   private static final Logger logger = System.getLogger(Methanol.class.getName());
 
-  private static final @Nullable MethodHandle SHUTDOWN; // Since Java 21.
-  private static final @Nullable MethodHandle AWAIT_TERMINATION; // Since Java 21.
-  private static final @Nullable MethodHandle IS_TERMINATED; // Since Java 21.
-  private static final @Nullable MethodHandle SHUTDOWN_NOW; // Since Java 21.
-  private static final @Nullable MethodHandle CLOSE; // Since Java 21.
+  private static final @Nullable @Signature("(HttpClient)void") MethodHandle SHUTDOWN; // Since Java 21.
+  private static final @Nullable @Signature("(HttpClient,Duration)boolean") MethodHandle AWAIT_TERMINATION; // Since Java 21.
+  private static final @Nullable @Signature("(HttpClient)boolean") MethodHandle IS_TERMINATED; // Since Java 21.
+  private static final @Nullable @Signature("(HttpClient)void") MethodHandle SHUTDOWN_NOW; // Since Java 21.
+  private static final @Nullable @Signature("(HttpClient)void") MethodHandle CLOSE; // Since Java 21.
 
   static {
     var lookup = MethodHandles.lookup();

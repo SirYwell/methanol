@@ -34,6 +34,8 @@ import java.lang.invoke.VarHandle;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
+
+import org.checkerframework.checker.handles.qual.Accessor;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 
 /**
@@ -59,9 +61,9 @@ public abstract class AbstractSubscription<T> implements Subscription {
   /** The subscription is cancelled. */
   private static final int CANCELLED = 0x10;
 
-  private static final VarHandle SYNC;
-  private static final VarHandle PENDING_EXCEPTION;
-  private static final VarHandle DEMAND;
+  private static final @Accessor("(AbstractSubscription;int)") VarHandle SYNC;
+  private static final @Accessor("(AbstractSubscription;Throwable)") VarHandle PENDING_EXCEPTION;
+  private static final @Accessor("(AbstractSubscription;long)") VarHandle DEMAND;
 
   static {
     var lookup = MethodHandles.lookup();
