@@ -25,6 +25,8 @@ package com.github.mizosoft.methanol.internal.concurrent;
 import static java.util.Objects.requireNonNull;
 
 import com.github.mizosoft.methanol.internal.Utils;
+import org.checkerframework.checker.handles.qual.Accessor;
+
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -43,7 +45,7 @@ public final class SerialExecutor implements Executor {
   /** Don't accept more tasks. */
   private static final int SHUTDOWN = 4;
 
-  private static final VarHandle SYNC;
+  private static final @Accessor("~(SerialExecutor;int)") VarHandle SYNC;
 
   static {
     try {

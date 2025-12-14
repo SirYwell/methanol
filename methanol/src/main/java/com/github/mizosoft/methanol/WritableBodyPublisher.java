@@ -74,7 +74,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * known length to this publisher.
  */
 public final class WritableBodyPublisher implements BodyPublisher, Flushable, AutoCloseable {
-  private static final @Accessor("(WritableBodyPublisher;State)") VarHandle STATE;
+  private static final @Accessor("~(WritableBodyPublisher;State)") VarHandle STATE;
 
   static {
     try {

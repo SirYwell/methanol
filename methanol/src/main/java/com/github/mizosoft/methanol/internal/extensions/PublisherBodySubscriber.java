@@ -37,6 +37,8 @@ import java.util.concurrent.CompletionStage;
 import java.util.concurrent.Flow.Publisher;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
+
+import org.checkerframework.checker.handles.qual.Accessor;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 
 /** A {@link BodySubscriber} that exposes the response body as a publisher. */
@@ -44,7 +46,7 @@ public final class PublisherBodySubscriber implements BodySubscriber<Publisher<L
   private static final Object COMPLETION_AWAITING_STATE = new Object();
   private static final Object DONE_STATE = new Object();
 
-  private static final VarHandle SUBSCRIPTION;
+  private static final @Accessor("(PublisherBodySubscriber;Subscription)") VarHandle SUBSCRIPTION;
 
   static {
     try {

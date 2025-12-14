@@ -193,8 +193,8 @@ public final class CacheWritingPublisher implements Publisher<List<ByteBuffer>> 
   }
 
   static final class CacheWritingSubscription implements Subscription {
-    private static final @Accessor("CacheWritingSubscription;Subscriber") VarHandle DOWNSTREAM;
-    private static final @Accessor("CacheWritingSubscription;WritingState") VarHandle STATE;
+    private static final @Accessor("~(CacheWritingSubscription;Subscriber)") VarHandle DOWNSTREAM;
+    private static final @Accessor("~(CacheWritingSubscription;WritingState)") VarHandle STATE;
 
     static {
       try {

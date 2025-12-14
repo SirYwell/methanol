@@ -447,7 +447,7 @@ public final class MultipartBodyPublisher implements MimeBodyPublisher {
 
   private static final class MultipartSubscription
       extends AbstractPollableSubscription<ByteBuffer> {
-    private static final @Accessor("(MultipartSubscription;Subscriber)") VarHandle PART_SUBSCRIBER;
+    private static final @Accessor("~(MultipartSubscription;Subscriber)") VarHandle PART_SUBSCRIBER;
 
     static {
       try {

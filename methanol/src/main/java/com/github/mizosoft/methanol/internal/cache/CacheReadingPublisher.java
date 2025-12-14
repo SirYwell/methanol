@@ -149,7 +149,7 @@ public final class CacheReadingPublisher implements Publisher<List<ByteBuffer>> 
      */
     private static final int PREFETCH = 2 * MAX_BULK_READ_SIZE;
 
-    private static final @Accessor("CacheReadingSubscription;State") VarHandle STATE;
+    private static final @Accessor("(CacheReadingSubscription;State)") VarHandle STATE;
 
     static {
       try {

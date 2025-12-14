@@ -29,6 +29,8 @@ import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
 import java.nio.ByteBuffer;
 import java.util.zip.Inflater;
+
+import org.checkerframework.checker.handles.qual.Accessor;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 
 /** {@code AsyncDecoder} for deflate. */
@@ -44,7 +46,7 @@ final class DeflateDecoder implements AsyncDecoder {
   /** A tombstone for {@link #inflaterReference} indicating the decoder has been closed. */
   private static final Object CLOSED = new Object();
 
-  private static final VarHandle INFLATER_REFERENCE;
+  private static final @Accessor("~(DeflateDecoder;Object)") VarHandle INFLATER_REFERENCE;
 
   static {
     try {

@@ -62,7 +62,7 @@ public abstract class AbstractSubscription<T> implements Subscription {
   private static final int CANCELLED = 0x10;
 
   private static final @Accessor("(AbstractSubscription;int)") VarHandle SYNC;
-  private static final @Accessor("(AbstractSubscription;Throwable)") VarHandle PENDING_EXCEPTION;
+  private static final @Accessor("~(AbstractSubscription;Throwable)") VarHandle PENDING_EXCEPTION;
   private static final @Accessor("(AbstractSubscription;long)") VarHandle DEMAND;
 
   static {

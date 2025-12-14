@@ -94,6 +94,8 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.Supplier;
 import java.util.zip.CRC32C;
+
+import org.checkerframework.checker.handles.qual.Accessor;
 import org.checkerframework.checker.nullness.qual.EnsuresNonNullIf;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -1017,7 +1019,7 @@ public final class DiskStore implements Store, TestableStore {
   }
 
   private static final class DebugIndexOperator extends IndexOperator {
-    private static final VarHandle RUNNING_OPERATION;
+    private static final @Accessor("~(DebugIndexOperator;String)") VarHandle RUNNING_OPERATION;
 
     static {
       try {
@@ -1093,7 +1095,7 @@ public final class DiskStore implements Store, TestableStore {
    * time period.
    */
   private static final class IndexWriteScheduler {
-    private static final VarHandle SCHEDULED_WRITE_TASK;
+    private static final @Accessor("~(IndexWriteScheduler;WriteTask)") VarHandle SCHEDULED_WRITE_TASK;
 
     static {
       try {
@@ -1289,7 +1291,7 @@ public final class DiskStore implements Store, TestableStore {
     private static final int KEEP_ALIVE = 2;
     private static final int SHUTDOWN = 4;
 
-    private static final VarHandle SYNC;
+    private static final @Accessor("(EvictionScheduler;int)") VarHandle SYNC;
 
     static {
       try {
