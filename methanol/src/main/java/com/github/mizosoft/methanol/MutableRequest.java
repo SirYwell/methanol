@@ -30,6 +30,8 @@ import static java.util.Objects.requireNonNull;
 import com.github.mizosoft.methanol.BodyAdapter.Hints;
 import com.github.mizosoft.methanol.internal.extensions.HeadersBuilder;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+
+import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpHeaders;
@@ -43,6 +45,7 @@ import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.checkerframework.common.value.qual.ArrayLenRange;
 
 /**
  * A mutable {@link HttpRequest} that supports {@link TaggableRequest tags}, relative URIs {@code &}
@@ -162,7 +165,8 @@ public final class MutableRequest extends TaggableRequest
   @Override
   @CanIgnoreReturnValue
   public MutableRequest tag(Object value) {
-    return tag(TypeRef.ofRuntimeType(value), value);
+    // return tag(TypeRef.ofRuntimeType(value), value);
+    throw new UnsupportedOperationException("CF bug");
   }
 
   @Override
@@ -411,7 +415,8 @@ public final class MutableRequest extends TaggableRequest
    */
   @CanIgnoreReturnValue
   public MutableRequest POST(Object payload, MediaType mediaType) {
-    return POST(payload, TypeRef.ofRuntimeType(payload), mediaType);
+    // return POST(payload, TypeRef.ofRuntimeType(payload), mediaType);
+    throw new UnsupportedOperationException("CF bug");
   }
 
   /**
@@ -436,7 +441,8 @@ public final class MutableRequest extends TaggableRequest
    */
   @CanIgnoreReturnValue
   public MutableRequest PUT(Object payload, MediaType mediaType) {
-    return PUT(payload, TypeRef.ofRuntimeType(payload), mediaType);
+    // return PUT(payload, TypeRef.ofRuntimeType(payload), mediaType);
+    throw new UnsupportedOperationException("CF bug");
   }
 
   /**
@@ -461,7 +467,8 @@ public final class MutableRequest extends TaggableRequest
    */
   @CanIgnoreReturnValue
   public MutableRequest PATCH(Object payload, MediaType mediaType) {
-    return PATCH(payload, TypeRef.ofRuntimeType(payload), mediaType);
+    // return PATCH(payload, TypeRef.ofRuntimeType(payload), mediaType);
+    throw new UnsupportedOperationException("CF bug");
   }
 
   /**
@@ -493,7 +500,8 @@ public final class MutableRequest extends TaggableRequest
    */
   @CanIgnoreReturnValue
   public MutableRequest method(String method, Object payload, MediaType mediaType) {
-    return method(method, payload, TypeRef.ofRuntimeType(payload), mediaType);
+    // return method(method, payload, TypeRef.ofRuntimeType(payload), mediaType);
+    throw new UnsupportedOperationException("CF bug");
   }
 
   /**

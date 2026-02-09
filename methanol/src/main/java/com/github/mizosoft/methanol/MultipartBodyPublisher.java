@@ -59,7 +59,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
 
-import org.checkerframework.checker.handles.qual.Accessor;
+import de.sirywell.handlechecker.qual.Accessor;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 

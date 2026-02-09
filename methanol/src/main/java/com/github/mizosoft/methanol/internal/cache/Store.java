@@ -271,6 +271,7 @@ public interface Store extends Closeable, Flushable {
      * @throws IllegalStateException if the viewer is closed or if a read is currently in progress
      *     and the store doesn't allow concurrent reads
      */
+    @SuppressWarnings("type.arguments.not.inferred")
     default CompletableFuture<Integer> read(ByteBuffer dst, Executor executor) {
       return read(List.of(dst), executor).thenApply(Long::intValue);
     }
@@ -318,6 +319,7 @@ public interface Store extends Closeable, Flushable {
      * @throws IllegalStateException if the editor is closed or if a write is currently in progress
      *     and the store doesn't allow concurrent writes
      */
+    @SuppressWarnings("type.arguments.not.inferred")
     default CompletableFuture<Integer> write(ByteBuffer src, Executor executor) {
       return write(List.of(src), executor).thenApply(Long::intValue);
     }

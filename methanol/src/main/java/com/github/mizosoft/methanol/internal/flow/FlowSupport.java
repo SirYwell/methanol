@@ -22,7 +22,8 @@
 
 package com.github.mizosoft.methanol.internal.flow;
 
-import org.checkerframework.checker.handles.qual.Accessor;
+
+import de.sirywell.handlechecker.qual.Accessor;
 
 import static java.util.Objects.requireNonNull;
 
@@ -120,7 +121,7 @@ public class FlowSupport {
   }
 
   /** Adds the given count to demand, making sure it doesn't exceed {@code Long.MAX_VALUE}. */
-  public static long getAndAddDemand(Object owner, VarHandle demand, long n) {
+  public static long getAndAddDemand(Object owner, @Accessor("~(Object;long)") VarHandle demand, long n) {
     while (true) {
       long currentDemand = (long) demand.getVolatile(owner);
       long updatedDemand = currentDemand + n;

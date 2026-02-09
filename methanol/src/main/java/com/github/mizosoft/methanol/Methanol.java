@@ -81,7 +81,7 @@ import java.util.function.UnaryOperator;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLParameters;
 
-import org.checkerframework.checker.handles.qual.Signature;
+import de.sirywell.handlechecker.qual.Signature;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -931,7 +931,7 @@ public class Methanol extends HttpClient {
 
   /** A builder of {@code Methanol} instances. */
   public static class Builder extends BaseBuilder<Builder> implements HttpClient.Builder {
-    private static final @Nullable MethodHandle LOCAL_ADDRESS; // Since Java 19.
+    private static final @Signature("(HttpClient.Builder,InetAddress)HttpClient.Builder") @Nullable MethodHandle LOCAL_ADDRESS; // Since Java 19.
 
     static {
       MethodHandle localAddress;
@@ -1079,7 +1079,8 @@ public class Methanol extends HttpClient {
       @SuppressWarnings({"Since15", "UnusedMethod", "EffectivelyPrivate"})
       public HttpClient.Builder localAddress(InetAddress localAddr) {
         try {
-          castNonNull(LOCAL_ADDRESS).invoke(backendBuilder, localAddr);
+          ((@Signature("(HttpClient.Builder,InetAddress)HttpClient.Builder") MethodHandle) castNonNull(LOCAL_ADDRESS))
+              .invoke(backendBuilder, localAddr);
           return this;
         } catch (Throwable e) {
           Unchecked.propagateIfUnchecked(e);

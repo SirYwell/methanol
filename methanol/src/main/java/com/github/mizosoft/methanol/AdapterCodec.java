@@ -85,7 +85,8 @@ public final class AdapterCodec {
    *     is compatible with the given hints' media type (if any) is found
    */
   public <T> BodyPublisher publisherOf(T value, Hints hints) {
-    return publisherOf(value, TypeRef.ofRuntimeType(value), hints);
+    // return publisherOf(value, TypeRef.ofRuntimeType(value), hints);
+    throw new UnsupportedOperationException("CF bug");
   }
 
   /**

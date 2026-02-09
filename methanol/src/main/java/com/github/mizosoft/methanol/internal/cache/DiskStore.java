@@ -95,7 +95,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.Supplier;
 import java.util.zip.CRC32C;
 
-import org.checkerframework.checker.handles.qual.Accessor;
+import de.sirywell.handlechecker.qual.Accessor;
 import org.checkerframework.checker.nullness.qual.EnsuresNonNullIf;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -1291,7 +1291,7 @@ public final class DiskStore implements Store, TestableStore {
     private static final int KEEP_ALIVE = 2;
     private static final int SHUTDOWN = 4;
 
-    private static final @Accessor("(EvictionScheduler;int)") VarHandle SYNC;
+    private static final @Accessor("~(EvictionScheduler;int)") VarHandle SYNC;
 
     static {
       try {

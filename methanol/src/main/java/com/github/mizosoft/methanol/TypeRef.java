@@ -41,8 +41,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.StringJoiner;
+
+import org.checkerframework.checker.index.qual.PolyLength;
+import org.checkerframework.checker.index.qual.PolySameLen;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.checkerframework.common.value.qual.ArrayLenRange;
 
 /**
  * A generic object that holds a reference to the {@link Type} of its generic argument {@link T}.
@@ -400,6 +404,7 @@ public abstract class TypeRef<T> {
     return null;
   }
 
+  @SuppressWarnings("type.arguments.not.inferred")
   private static Type substitute(ParameterizedType spec, Type target) {
     requireNonNull(target);
     if (target instanceof Class<?>) {
@@ -466,7 +471,7 @@ public abstract class TypeRef<T> {
     }
   }
 
-  private static Type[] substituteAll(ParameterizedType spec, Type[] types) {
+  private static Type @PolySameLen [] substituteAll(ParameterizedType spec, Type @PolySameLen[] types) {
     Type[] substitutedTypes = null;
     for (int i = 0; i < types.length; i++) {
       var type = types[i];
@@ -497,7 +502,7 @@ public abstract class TypeRef<T> {
     return -1;
   }
 
-  private static Type[] nonNullCopy(Type[] types) {
+  private static Type @PolySameLen[] nonNullCopy(Type @PolySameLen [] types) {
     var copy = Arrays.copyOf(types, types.length);
     for (var type : copy) {
       requireNonNull(type);
@@ -612,11 +617,11 @@ public abstract class TypeRef<T> {
   }
 
   private static final class WildcardTypeImpl implements WildcardType {
-    private final Type[] upperBounds;
+    private final Type @ArrayLenRange(from=1) [] upperBounds;
     private final Type[] lowerBounds;
 
     WildcardTypeImpl(Type[] upperBounds, Type[] lowerBounds) {
-      this.upperBounds = nonNullCopy(upperBounds);
+      this.upperBounds = (Type @ArrayLenRange(from=1) []) nonNullCopy(upperBounds);
       this.lowerBounds = nonNullCopy(lowerBounds);
       requireArgument(
           upperBounds.length > 0 && (upperBounds[0] == Object.class || lowerBounds.length == 0),
@@ -624,7 +629,7 @@ public abstract class TypeRef<T> {
     }
 
     @Override
-    public Type[] getUpperBounds() {
+    public Type @ArrayLenRange(from=1) [] getUpperBounds() {
       return upperBounds.clone();
     }
 

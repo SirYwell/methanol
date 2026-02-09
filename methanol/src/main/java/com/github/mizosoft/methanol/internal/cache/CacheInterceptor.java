@@ -332,6 +332,7 @@ public final class CacheInterceptor implements Interceptor {
         .orElse(true);
   }
 
+  @SuppressWarnings("return.type.incompatible")
   private static Optional<Boolean> evaluateIfNoneMatch(
       HttpRequest request, TrackedResponse<?> cacheResponse) {
     var ifNoneMatch = request.headers().allValues("If-None-Match");

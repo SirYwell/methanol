@@ -38,7 +38,7 @@ import java.util.concurrent.Flow.Publisher;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
 
-import org.checkerframework.checker.handles.qual.Accessor;
+import de.sirywell.handlechecker.qual.Accessor;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 
 /** A {@link BodySubscriber} that exposes the response body as a publisher. */

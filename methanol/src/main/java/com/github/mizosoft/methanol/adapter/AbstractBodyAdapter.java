@@ -159,7 +159,8 @@ public abstract class AbstractBodyAdapter implements BodyAdapter {
      */
     @Override
     default BodyPublisher toBody(Object value, @Nullable MediaType mediaType) {
-      return toBody(value, TypeRef.ofRuntimeType(value), Utils.hintsOf(mediaType));
+      // return toBody(value, TypeRef.ofRuntimeType(value), Utils.hintsOf(mediaType));
+      throw new UnsupportedOperationException("CF bug");
     }
 
     @Override

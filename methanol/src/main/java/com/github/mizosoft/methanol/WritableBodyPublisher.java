@@ -54,7 +54,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.BooleanSupplier;
 
-import org.checkerframework.checker.handles.qual.Accessor;
+import de.sirywell.handlechecker.qual.Accessor;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 

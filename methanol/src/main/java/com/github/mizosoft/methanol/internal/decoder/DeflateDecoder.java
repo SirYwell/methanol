@@ -30,7 +30,7 @@ import java.lang.invoke.VarHandle;
 import java.nio.ByteBuffer;
 import java.util.zip.Inflater;
 
-import org.checkerframework.checker.handles.qual.Accessor;
+import de.sirywell.handlechecker.qual.Accessor;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 
 /** {@code AsyncDecoder} for deflate. */

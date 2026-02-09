@@ -35,8 +35,9 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
 
-import org.checkerframework.checker.handles.qual.Accessor;
+import de.sirywell.handlechecker.qual.Accessor;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
+import org.checkerframework.checker.units.qual.C;
 
 /**
  * An abstract {@link Subscription} that implements most of the machinery for execution and
@@ -91,7 +92,7 @@ public abstract class AbstractSubscription<T> implements Subscription {
   @Override
   public final void request(long n) {
     if (n > 0) {
-      getAndAddDemand(this, DEMAND, n);
+      getAndAddDemand(this, (@Accessor("~(Object;long)") VarHandle) DEMAND, n);
       fireOrKeepAlive();
     } else {
       fireOrKeepAliveOnError(new NonPositiveRequestException(n));
@@ -279,7 +280,7 @@ public abstract class AbstractSubscription<T> implements Subscription {
         return; // Emit failed and the subscriber is completed exceptionally.
       } else if (x > 0) {
         // Flush satisfied demand.
-        r = subtractAndGetDemand(this, DEMAND, x);
+        r = subtractAndGetDemand(this, (@Accessor("~(Object;long)") VarHandle) DEMAND, x);
         x = 0L;
       } else if (r == (r = demand) // Check no new demand has arrived.
           && SYNC.compareAndSet(

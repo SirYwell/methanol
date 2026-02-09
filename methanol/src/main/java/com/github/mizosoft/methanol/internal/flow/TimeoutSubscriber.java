@@ -28,7 +28,7 @@ import static com.github.mizosoft.methanol.internal.flow.FlowSupport.subtractAnd
 import static java.util.Objects.requireNonNull;
 
 import com.github.mizosoft.methanol.internal.concurrent.Delayer;
-import org.checkerframework.checker.handles.qual.Accessor;
+import de.sirywell.handlechecker.qual.Accessor;
 
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
@@ -109,7 +109,7 @@ public abstract class TimeoutSubscriber<T, S extends Subscriber<? super T>>
 
     currentTimeoutTask.cancel();
 
-    long currentDemand = subtractAndGetDemand(this, DEMAND, 1);
+    long currentDemand = subtractAndGetDemand(this, (@Accessor("~(Object;long)") VarHandle) DEMAND, 1);
     if (currentDemand < 0) {
       // We're getting overflowed.
       cancelOnError(this::onError, new IllegalStateException("Getting more items than requested"));
@@ -210,7 +210,7 @@ public abstract class TimeoutSubscriber<T, S extends Subscriber<? super T>>
         return;
       }
 
-      if (n > 0 && getAndAddDemand(TimeoutSubscriber.this, DEMAND, n) == 0) {
+      if (n > 0 && getAndAddDemand(TimeoutSubscriber.this, (@Accessor("~(Object;long)") VarHandle) DEMAND, n) == 0) {
         try {
           scheduleTimeout(currentIndex + 1);
         } catch (RuntimeException | Error e) {

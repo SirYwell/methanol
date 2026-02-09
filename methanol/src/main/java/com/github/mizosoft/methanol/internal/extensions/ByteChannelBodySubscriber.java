@@ -49,6 +49,8 @@ import java.util.concurrent.CompletionStage;
 import java.util.concurrent.Flow.Subscription;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+import de.sirywell.handlechecker.qual.Accessor;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -63,7 +65,7 @@ public final class ByteChannelBodySubscriber implements BodySubscriber<ReadableB
   private static final ByteBuffer TOMBSTONE = ByteBuffer.allocate(0);
   private static final List<ByteBuffer> TOMBSTONE_LIST = List.of(TOMBSTONE);
 
-  private static final VarHandle PENDING_EXCEPTION;
+  private static final @Accessor("~(Channel;Throwable)") VarHandle PENDING_EXCEPTION;
 
   static {
     try {

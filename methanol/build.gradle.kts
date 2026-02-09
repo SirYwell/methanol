@@ -35,7 +35,9 @@ val tckTestCompileOnly: Configuration by configurations.getting {
 
 checkerFramework {
   checkers = listOf(
-    "org.checkerframework.checker.handles.HandleChecker",
+    "org.checkerframework.common.value.ValueChecker",
+    "org.checkerframework.common.reflection.ClassValChecker",
+    "de.sirywell.handlechecker.HandleChecker",
   )
 }
 
@@ -46,12 +48,12 @@ dependencies {
   tckTestImplementation(libs.reactivestreams.tck.flow)
   tckTestImplementation(libs.mockwebserver)
 
-  compileOnly("io.github.eisop:checker-qual:3.49.3-eisop1")
-  testCompileOnly("io.github.eisop:checker-qual:3.49.3-eisop1")
-  checkerFramework("io.github.eisop:checker-qual:3.49.3-eisop1")
-  checkerFramework("io.github.eisop:checker:3.49.3-eisop1")
-  checkerFramework("de.sirywell:handles-checker:0.1-SNAPSHOT")
-  compileOnly("de.sirywell:handles-checker:0.1-SNAPSHOT")
+  compileOnly("io.github.eisop:checker-qual:3.49.5-eisop1-SNAPSHOT")
+  testCompileOnly("io.github.eisop:checker-qual:3.49.5-eisop1-SNAPSHOT")
+  checkerFramework("io.github.eisop:checker-qual:3.49.5-eisop1-SNAPSHOT")
+  checkerFramework("io.github.eisop:checker:3.49.5-eisop1-SNAPSHOT")
+  checkerFramework("de.sirywell:handle-checker:0.1-SNAPSHOT")
+  compileOnly("de.sirywell:handle-checker:0.1-SNAPSHOT")
 }
 
 tasks.named<JavaCompile>("compileTckTestJava") {
